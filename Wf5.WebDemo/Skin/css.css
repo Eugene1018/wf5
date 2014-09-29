@@ -1,0 +1,67 @@
+﻿body { margin: 0; padding: 0; color: #000; font-size: 12px; line-height: 150%; font-family: "Verdana" , "Arial" , "Helvetica" , "sans-serif"; padding:5px ; }
+p, h1, h2, h3, h4, h5, h6, ul, li, div, span, img, form { margin: 0; padding: 0; list-style: none; }
+input, select, img, button { vertical-align: middle; }
+img { border: 0; }
+table { font-size: 12px; line-height: 150%; font-family: "Verdana" , "Arial" , "Helvetica" , "sans-serif"; }
+input { font-size: 12px; font-family: "Verdana" , "Arial" , "Helvetica" , "sans-serif"; }
+select { font-size: 12px; font-family: "Verdana" , "Arial" , "Helvetica" , "sans-serif"; }
+textarea { font-size: 12px; font-family: "Verdana" , "Arial" , "Helvetica" , "sans-serif"; }
+a { color: #036; text-decoration: underline; }
+a:hover { color: #f60; text-decoration: underline; }
+
+.tb {width:100%; border: solid 1px #a8caf1; border-collapse: collapse; }
+.tb tr th { padding: 5px; border: solid 1px #a8caf1; font-weight: 600;}
+.tb tr td { padding: 5px; border: solid 1px #a8caf1;}
+
+.tblist { width:100%;border: solid 1px #a8caf1; border-collapse: collapse; }
+.tblist .pager { font-size: 13px; padding: 10px 5px 5px 5px; color: #036; }
+.tblist .pager .onPage { font-size: 13px; text-decoration: none; font-weight: 600; color: #f60; }
+.tblist .pager a { margin: 0 5px 0 5px; }
+.tblist tr th { padding: 5px; border: solid 1px #a8caf1; vertical-align: middle; background:url(images/th_bg.jpg) repeat-x ; color: #fff; }
+.tblist tr td { padding: 2px; border: solid 1px #a8caf1; vertical-align: middle; }
+.tblist tfoot tr td { background: #ccc; color:#e3effb}
+
+
+/*文本框******/
+.input { width: 140px; height: 15px; border: solid 1px #b1ceef; padding-top: 4px;  }
+.input:hover { border: solid 1px #005AA0; }
+
+
+.wd500 { width:500px;}
+.wd450 { width:450px;}
+.wd400 { width:400px;}
+.wd350 { width:350px;}
+.wd300 { width:300px;}
+.wd250 { width:250px;}
+.wd206 { width:205px;}
+.wd200 { width:200px;}
+.wd150 { width:150px;}
+.wd100 { width:100px;}
+.wd90 { width:90px;}
+.wd80 { width:80px;}
+.wd70 { width:70px;}
+.wd60 { width:60px;}
+.wd50 { width:50px;}
+.wd40 { width:40px;}
+.wd30 { width:30px;}
+.wd20 { width:20px;}
+.wd10 { width:10px;}
+
+.redbold { color:#f00;}
+
+.hidden { display:none;}
+.left {float:left;}
+.right {float:right;}
+.readonly { color:#B0A0A0 }
+.fbold {font-weight:bold;}
+.fw600 { font-weight: 600; }
+.fsize12 {font-size:12px;}
+.fsize14 {font-size:14px;}
+.fsize16 {font-size:16px;}
+
+
+/*按钮******/
+.btn { padding: 4px 8px 3px 8px;padding:3px 3px 1px 3px;filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#cecfde);color:#0477cf;text-align:center;cursor:pointer;border: solid 1px #b1ceef;
+	}
+.btn:hover { border: 1px solid #005AA0; filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#CCCCCC);  }
+

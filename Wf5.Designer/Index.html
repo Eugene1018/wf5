@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>D5 Workflow Designer</title>
+    <link rel="stylesheet" type="text/css" href="Content/ui/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="Content/main.css" />
+	<link rel="stylesheet" type="text/css" href="Content/splitter.css" />
+</head>
+<body ng-app='canvasApp'
+      ng-controller='canvasCtrl'
+      mouse-capture
+      ng-keydown='keyDown($event)'
+      ng-keyup='keyUp($event)'>
+    <div id="leftPane" class="ui-layout-west">
+        <svg width="160" height="60">
+            <circle class="draggable" cx="40" cy="30" r="20" style="fill:palegreen;stroke:yellowgreen;stroke-width:2;" />
+            <circle class="draggable" cx="120" cy="30" r="20" style="fill:rosybrown;stroke:brown;stroke-width:2;" />
+        </svg>
+        <svg width="160" height="70">
+            <rect class="draggable" x="10" y="20" rx="10" ry="10" width="60" height="40" style="fill:white;stroke:steelblue;stroke-width:2;" />
+        </svg>
+    </div>
+    <div id="rightPane" class="ui-layout-center">
+        <!--
+        This custom element defines the flowchart.
+        -->
+        <k-graph style="margin: 5px; width: 100%; height: 100%;"
+                 graph="graphView">
+        </k-graph>
+    </div>
+    <div class="ui-layout-north">
+        <div style="margin-left: 10px;">
+            <button ng-click="addNode()"
+                    title="Add a new node to the chart">
+                Add Node
+            </button>
+            <button ng-click="addNewInputConnector()"
+                    ng-disabled="chartViewModel.getSelectedNodes().length == 0"
+                    title="Add a new input connector to the selected node">
+                Add Input Connector
+            </button>
+            <button ng-click="addNewOutputConnector()"
+                    ng-disabled="chartViewModel.getSelectedNodes().length == 0"
+                    title="Add a new output connector to the selected node">
+                Add Output Connector
+            </button>
+            <button ng-click="deleteSelected()"
+                    ng-disabled="chartViewModel.getSelectedNodes().length == 0
+                 && chartViewModel.getSelectedConnections().length == 0"
+                    title="Delete selected nodes and connections">
+                Delete Selected
+            </button>
+        </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="Content/app.css" />
+
+    <script type="text/javascript" src="Scripts/jquery-2.0.2.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-ui-1.10.3.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.layout-latest.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.dialogextend.1_0_1.js"></script>
+    <script type="text/javascript" src="Scripts/angular.js"></script>
+
+    <script type="text/javascript" src="AppJS/app.js"></script>
+    <script type="text/javascript" src="AppJS/kgraphview.js"></script>
+    <script type="text/javascript" src="AppJS/kgraphdirective.js"></script>
+    <script type="text/javascript" src="AppJS/dragging_service.js"></script>
+    <script type="text/javascript" src="AppJS/mouse_capture_service.js"></script>
+    <script type="text/javascript" src="AppJS/svg_class.js"></script>
+
+    <script defer="defer">
+        $(function () {
+            $('body').layout({
+                applyDemoStyles: true
+            });
+
+            //var hi = Wf5.homeIndex();
+        });
+    </script>
+</body>
+</html>

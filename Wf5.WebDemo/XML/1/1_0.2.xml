@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package>
+  <!--流程参与者集合节点-->
+  <Participants>
+    <!--流程参与者节点，属性type：role or user id：GUID角色用户唯一标识 outerId：角色用户在业务系统中的标识 -->
+    <Participant type="Role" id="7074cac2-fd9b-4b25-aa1a-dbf436c45239" name="人事经理" code="UserHR" outerId="3"/>
+    <Participant type="Role" id="19e1f15c-b4a0-42d6-8f41-5cf3dfcd4a69" name="项目经理" code="UserPM" outerId="2"/>
+    <Participant type="Role" id="f33df866-3a05-6ea0-8c0d-bc0283a98e7a" name="主管总监" code="UserAD" outerId="8"/>
+    <Participant type="Role" id="4166e789-8f3d-3f39-b601-75c8f9b04f9d" name="总经理" code="UserMD" outerId="9"/>
+    <Participant type="Role" id="6a40230c-a46b-438f-a40c-4c14915846bc" name="员工" code="User" outerId="1"/>
+  </Participants>
+  <!--流程定义头节点-->
+
+
+  <WorkflowProcess>
+    <!--流程节点-->a
+    <Process name="请假条申请流程" id="e3c8830d-290b-4c1f-bc6d-0e0e78eb0bbf">
+
+      <!--流程描述信息-->
+      <Description>开始--员工提交--项目经理签字--人事经理签字--员工确认--结束</Description>
+
+
+      <!--流程节点的集合-->
+      <Activities>
+        <Activity name="开始" id="99d407e8-ad21-46b9-aa4f-ad3e0968f954">
+          <ActivityType type="StartNode"/>
+          <Location Left="123" Top="57" Width="50" Height="50" />
+        </Activity>
+        
+        <Activity name="工程师提交" id="4a916298-d514-41e0-8a48-a6bcc33d32b9">
+          <ActivityType type="TaskNode" />
+          <Location Left="90" Top="205" Width="120" Height="50" />
+          <!--活动参与者的集合节点-->
+          <Performers>
+            <Performer id="6a40230c-a46b-438f-a40c-4c14915846bc" />
+          </Performers>
+        </Activity>
+        <Activity name="Or分支节点" id="a44d219c-c60e-468c-b5ab-3f5159ac24a4">
+          <ActivityType type="GatewayNode" gatewaySplitJoinType="Split" gatewayDirection="OrSplit"/>
+        </Activity>
+
+        <Activity name="项目经理签字" id="48bf310f-9dab-403a-9107-2d6d7d0060c9">
+          <ActivityType type="TaskNode" />
+          <Location Left="90" Top="205" Width="120" Height="50" />
+          <Performers>
+            <Performer id="19e1f15c-b4a0-42d6-8f41-5cf3dfcd4a69" />
+          </Performers>
+        </Activity>
+        <Activity name="Or分支节点" id="a2083f44-cc6a-d296-3d3c-600042ea2d47">
+          <ActivityType type="GatewayNode" gatewaySplitJoinType="Split" gatewayDirection="OrSplit"/>
+        </Activity>
+        <Activity name="主管总监批准" id="a5ec3397-df5e-41bd-9b21-ac476effb5da">
+          <ActivityType type="TaskNode" />
+          <Location Left="90" Top="205" Width="120" Height="50" />
+          <Performers>
+            <Performer id="f33df866-3a05-6ea0-8c0d-bc0283a98e7a" />
+          </Performers>
+        </Activity>
+        <Activity name="Or分支节点" id="78ac6a00-b26b-2c7c-ac72-2861c33bb374">
+          <ActivityType type="GatewayNode" gatewaySplitJoinType="Split" gatewayDirection="OrSplit"/>
+        </Activity>
+        <Activity name="总经理批准" id="c7decf46-596a-8e83-b808-77165683da27">
+          <ActivityType type="TaskNode" />
+          <Location Left="90" Top="205" Width="120" Height="50" />
+          <Performers>
+            <Performer id="4166e789-8f3d-3f39-b601-75c8f9b04f9d" />
+          </Performers>
+        </Activity>
+        <Activity name="人事经理签字" id="f907e746-a7e0-4aef-a4ad-8ec70017fda2">
+          <ActivityType type="TaskNode" />
+          <Location Left="90" Top="205" Width="120" Height="50" />
+          <Performers>
+            <Performer id="7074cac2-fd9b-4b25-aa1a-dbf436c45239" />
+          </Performers>
+        </Activity>
+
+        <Activity name="结束" id="b92b275f-f646-43b2-bfdd-f7904a186460">
+          <ActivityType type="EndNode"/>
+        </Activity>
+
+      </Activities>
+
+
+      <!--转移节点集合-->
+      <Transitions>
+        <Transition name="T1" id="b46572bc-c066-4156-9a99-743959408cb3" from="99d407e8-ad21-46b9-aa4f-ad3e0968f954" to="4a916298-d514-41e0-8a48-a6bcc33d32b9" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Conditions />
+        </Transition>
+        <Transition name="T2" id="64006f35-7c6d-6300-0c7b-1d161727da97" from="4a916298-d514-41e0-8a48-a6bcc33d32b9" to="a44d219c-c60e-468c-b5ab-3f5159ac24a4" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Conditions />
+        </Transition>
+        <!--Or分支节点—部门审批-->
+        <Transition name="T3" id="7b4e4be7-a74d-4a8b-b2ce-bb367b0186be" from="a44d219c-c60e-468c-b5ab-3f5159ac24a4" to="48bf310f-9dab-403a-9107-2d6d7d0060c9" direction="Forward">
+          <Description />
+          <Condition type="Expression">
+            <ConditionText>
+              <![CDATA[
+                  roleid == 1 
+                  ]]>
+            </ConditionText>
+          </Condition>
+        </Transition>
+        <Transition name="T4" id="0ec73319-d845-40f0-9f1d-00fd36920f60" from="a44d219c-c60e-468c-b5ab-3f5159ac24a4" to="a5ec3397-df5e-41bd-9b21-ac476effb5da" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Condition type="Expression">
+            <ConditionText>
+              <![CDATA[
+                  roleid == 2
+                  ]]>
+            </ConditionText>
+          </Condition>
+        </Transition>
+        <Transition name="T5" id="ce2559a5-6ca0-c107-9cd0-c4f7ff8e42a7" from="a44d219c-c60e-468c-b5ab-3f5159ac24a4" to="c7decf46-596a-8e83-b808-77165683da27" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Condition type="Expression">
+            <ConditionText>
+              <![CDATA[
+                  roleid == 8
+                  ]]>
+            </ConditionText>
+          </Condition>
+        </Transition>
+        <!--分支节点-->
+        <Transition name="T6" id="2b4df9a0-e87c-189b-257d-6950ac3b072f" from="48bf310f-9dab-403a-9107-2d6d7d0060c9" to="a2083f44-cc6a-d296-3d3c-600042ea2d47" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Conditions />
+        </Transition>
+        <Transition name="T7" id="95a90ff6-16bb-72a1-3591-25ffc27d8346" from="a2083f44-cc6a-d296-3d3c-600042ea2d47" to="f907e746-a7e0-4aef-a4ad-8ec70017fda2" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Condition type="Expression">
+            <ConditionText>
+              <![CDATA[
+                  days <=2
+                  ]]>
+            </ConditionText>
+          </Condition>
+        </Transition>
+        <Transition name="T8" id="ef4d9dac-c9d4-3464-9ed0-b8f8668e3163" from="a2083f44-cc6a-d296-3d3c-600042ea2d47" to="a5ec3397-df5e-41bd-9b21-ac476effb5da" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Condition type="Expression">
+            <ConditionText>
+              <![CDATA[
+                  days >2
+                  ]]>
+            </ConditionText>
+          </Condition>
+        </Transition>
+        <Transition name="T9" id="976a6d37-da9e-778f-bd9a-2eb080086012" from="a5ec3397-df5e-41bd-9b21-ac476effb5da" to="78ac6a00-b26b-2c7c-ac72-2861c33bb374" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Conditions />
+        </Transition>
+        <Transition name="T10" id="4166e789-8f3d-3f39-b601-75c8f9b04f9d" from="78ac6a00-b26b-2c7c-ac72-2861c33bb374" to="c7decf46-596a-8e83-b808-77165683da27" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Condition type="Expression">
+            <ConditionText>
+              <![CDATA[
+                  (roleid==1 && days >5) || (roleid==2 && days>3)
+                  ]]>
+            </ConditionText>
+          </Condition>
+        </Transition>
+        <Transition name="T11" id="0c851a0e-7d6a-b26d-7947-d25b88d5179b" from="78ac6a00-b26b-2c7c-ac72-2861c33bb374" to="f907e746-a7e0-4aef-a4ad-8ec70017fda2" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Condition type="Expression">
+            <ConditionText>
+              <![CDATA[
+                  (roleid==1 && days <=5) || (roleid==2 && days<=3)
+                  ]]>
+            </ConditionText>
+          </Condition>
+        </Transition>
+        <Transition name="T12" id="bba84b17-04bf-c876-f008-a2efe082219e" from="c7decf46-596a-8e83-b808-77165683da27" to="f907e746-a7e0-4aef-a4ad-8ec70017fda2" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Conditions />
+        </Transition>
+        <!--结束  -->
+        <Transition name="T13" id="86155fde-7148-8979-691f-423c6484196d" from="f907e746-a7e0-4aef-a4ad-8ec70017fda2" to="b92b275f-f646-43b2-bfdd-f7904a186460" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Conditions />
+        </Transition>
+        
+        <!--结束  -->
+        <!--
+      <Transition name="T6" id="40b687b3-80e5-4cae-8fb9-79323e42d930" from="a5ec3397-df5e-41bd-9b21-ac476effb5da" to="b92b275f-f646-43b2-bfdd-f7904a186460" direction="Forward">
+          <Location FromPoint="bottomMiddleHotPoint" ToPoint="topMiddleHotPoint" />
+          <Description />
+          <Conditions />
+        </Transition>
+      -->
+
+      </Transitions>
+
+    </Process>
+  </WorkflowProcess>
+
+</Package>
